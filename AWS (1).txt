@@ -1,0 +1,143 @@
+VPC
+---
+virtuval private cloud
+VPC is regional resource
+
+
+10.0.0.0/16  -VPC  2*32-16 = 2*16 --65500
+
+10.0.0.0/24   --VPC 2*32 -24 = 2*8  --256
+
+
+10.0.0.0/20  --vPC 2*32 -20 =2*12  --
+
+-----------------
+10.0.0.0/24 ---256
+
+10.0.0.1
+10.0.0.2
+10.0.0.3
+
+
+
+
+10.0.0.256  ---> 256-5 --251
+
+we are using 251 ips
+-------
+
+192.168.20.0/24
+
+192.168.20.0
+
+
+192.168.20.255
+---------------
+
+192.168.0.0/16
+
+192.168.1.0
+
+
+192.168.1.255
+--
+
+192.168.2.0
+
+
+192.168.2.255
+------------------
+
+we can create subnets in VPC
+
+192.168.0.0/16  --2*16 =65000 
+
+we can divide the vpc's in differet subnets
+
+192.168.20.0/24  --> dev-hr-public-subnet
+
+
+192.168.40.0/24   --qa-hr-subnet
+
+Note : every subnet should associate with one zone
+
+
+
+192.162.0.0/16  -vpc
+
+
+192.162.20.0/24  --256 -5 =251
+
+
+
+
+192.162.3.22  --ec2  1
+
+
+
+
+192.162.35.55  --ec2 2
+
+
+---------------------
+steps to create application Load Balancer
+-----------------------------------------
+step1)  create ec2 instance(hr instance) in one subnet 
+and install httpd web server
+
+Note: mention below script in user data
+
+
+step2)  create ec2 instance(sales instance) in other subnet 
+and install httpd web server
+
+#! /bin/bash
+yum install httpd -y
+mkdir /var/www/html/sales
+systemctl start httpd
+systemctl enable httpd
+echo "this is sales application" > /var/www/html/sales/index.html
+
+step3) create hr target group and register hr-instance
+step4) create sales target group and register sales-instance
+step5) create load balancer and add rules route the trafic bsed 
+on the path
+
+----------------------
+
+types of instances
+--------------
+1)ondemand instances
+on demand instances are costly as compared to other
+which are usually created where ever we are required
+
+2) reserved instances
+ we are reserved instances for mutiple years like two or three years
+so price is less as compared to on demand
+
+3)spot instance
+there spot are provided at very low cost but there take back any time 
+there instance are genrally used for peak load
+sopt instances cost is less as compared to other instances
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
